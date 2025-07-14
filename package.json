@@ -1,0 +1,42 @@
+{
+  "name": "gitlab-mcp-tools",
+  "version": "1.0.0",
+  "description": "GitLab tools based on MCP protocol, supporting diff information retrieval, Merge Request creation, and more",
+  "main": "dist/index.js",
+  "bin": {
+    "gitlab-mcp-tools": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "start": "node dist/index.js"
+  },
+  "keywords": ["mcp", "gitlab", "tools", "cursor", "code-review"],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.10",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@gitbeaker/node": "^35.8.1",
+    "@modelcontextprotocol/sdk": "^1.15.0",
+    "axios": "^1.10.0",
+    "zod": "^3.25.75"
+  }
+}
