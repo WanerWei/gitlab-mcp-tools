@@ -31,7 +31,7 @@ export GITLAB_URL=https://gitlab.example.com
   "mcpServers": {
     "gitlab": {
       "command": "npx",
-      "args": ["gitlab-mcp-tools"],
+      "args": ["-y", "gitlab-mcp-tools"],
       "env": {
         "GITLAB_TOKEN": "your_token_here",
         "GITLAB_URL": "https://gitlab.example.com"
