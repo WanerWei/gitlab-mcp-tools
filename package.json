@@ -2,13 +2,15 @@
   "name": "gitlab-mcp-tools",
   "version": "1.0.0",
   "description": "GitLab tools based on MCP protocol, supporting diff information retrieval, Merge Request creation, and more",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
+  "type": "module",
   "bin": {
-    "gitlab-mcp-tools": "dist/index.js"
+    "gitlab-mcp-tools": "dist/index.cjs"
   },
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
+    "build": "tsc && tsc-alias",
+    "prepare": "npm run build",
+    "dev": "tsc && tsc-alias --watch",
     "clean": "rm -rf dist",
     "prebuild": "npm run clean",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,7 +18,13 @@
     "lint:fix": "eslint src/**/*.ts --fix",
     "start": "node dist/index.js"
   },
-  "keywords": ["mcp", "gitlab", "tools", "cursor", "code-review"],
+  "keywords": [
+    "mcp",
+    "gitlab",
+    "tools",
+    "cursor",
+    "code-review"
+  ],
   "author": "",
   "license": "ISC",
   "repository": {
@@ -31,6 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.0.0",
+    "tsc-alias": "^1.8.16",
     "typescript": "^5.8.3"
   },
   "dependencies": {

@@ -1,4 +1,4 @@
-import { Logger, LogLevel } from '@/types';
+import { Logger, LogLevel } from '@/types/index.js';
 
 class LoggerImpl implements Logger {
   private logLevel: LogLevel = 'info';

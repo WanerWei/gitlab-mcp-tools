@@ -1,4 +1,4 @@
-import { GitlabConfig } from '@/types';
+import { GitlabConfig } from '@/types/index.js';
 
 export interface AppConfig {
   gitlab: GitlabConfig;

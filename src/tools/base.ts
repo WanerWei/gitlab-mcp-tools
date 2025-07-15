@@ -1,34 +1,36 @@
 import { Gitlab } from '@gitbeaker/node';
 import { z } from 'zod';
-import { McpTool, GitlabConfig, GitlabApiResponse } from '@/types';
-import { logger } from '@/utils/logger';
-import { errorHandler } from '@/utils/errorHandler';
-import { getGitlabConfig } from '@/utils/gitlabConfig';
+import { GitlabConfig, GitlabApiResponse } from '@/types/index.js';
+import { logger } from '@/utils/logger.js';
+import { errorHandler } from '@/utils/errorHandler.js';
+import { getGitlabConfig } from '@/utils/gitlabConfig.js';
 
-export abstract class BaseTool implements McpTool {
-  abstract name: string;
-  abstract description: string;
-  abstract inputSchema: z.ZodSchema;
-  abstract outputSchema: z.ZodSchema;
+// 所有子类需用 static toolName/description/inputSchema/outputSchema/run
+export abstract class BaseTool {
+  static toolName: string;
+  static description: string;
+  static inputSchema: z.AnyZodObject;
+  static outputSchema: z.ZodSchema;
 
-  protected gitlabClient: any = null;
-  protected config: GitlabConfig | null = null;
+  // 静态缓存 client
+  private static gitlabClient: any = null;
+  private static config: GitlabConfig | null = null;
 
-  protected async getGitlabClient(): Promise<any> {
-    if (!this.gitlabClient) {
-      this.config = getGitlabConfig();
-      this.gitlabClient = new Gitlab({
-        host: this.config.gitlabUrl,
-        token: this.config.token,
+  static async getGitlabClient(): Promise<any> {
+    if (!BaseTool.gitlabClient) {
+      BaseTool.config = getGitlabConfig();
+      BaseTool.gitlabClient = new Gitlab({
+        host: BaseTool.config.gitlabUrl,
+        token: BaseTool.config.token,
       });
-      logger.debug(`[${this.name}] GitLab client initialized successfully`);
+      logger.debug(`[BaseTool] GitLab client initialized successfully`);
     }
-    return this.gitlabClient;
+    return BaseTool.gitlabClient;
   }
 
-  protected async executeWithErrorHandling<T>(
+  static async executeWithErrorHandling<T>(
     operation: () => Promise<T>,
-    context: string = this.name
+    context: string = 'BaseTool'
   ): Promise<GitlabApiResponse<T>> {
     try {
       logger.info(`[${context}] Starting operation`);
@@ -48,7 +50,7 @@ export abstract class BaseTool implements McpTool {
     }
   }
 
-  protected formatResponse<T>(data: T): any {
+  static formatResponse<T>(data: T): any {
     return {
       content: [
         {
@@ -59,5 +61,8 @@ export abstract class BaseTool implements McpTool {
     };
   }
 
-  abstract run(args: any, extra: any): Promise<any>;
+  // 所有子类 run 也应为 static
+  static async run(args: any, extra: any): Promise<any> {
+    throw new Error('Not implemented');
+  }
 } 

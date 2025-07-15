@@ -1,5 +1,5 @@
-import { ErrorHandler } from '@/types';
-import { logger } from './logger';
+import { ErrorHandler } from '@/types/index.js';
+import { logger } from './logger.js';
 
 export class ErrorHandlerImpl implements ErrorHandler {
   handle(error: any) {

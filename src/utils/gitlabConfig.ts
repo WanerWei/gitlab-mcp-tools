@@ -1,5 +1,5 @@
-import { GitlabConfig } from '@/types';
-import { logger } from './logger';
+import { GitlabConfig } from '@/types/index.js';
+import { logger } from './logger.js';
 
 /**
  * GitLab Configuration Utility

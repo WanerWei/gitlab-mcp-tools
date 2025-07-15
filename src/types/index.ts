@@ -10,7 +10,7 @@ export interface GitlabConfig {
 export interface McpTool {
   name: string;
   description: string;
-  inputSchema: z.ZodSchema;
+  inputSchema: z.ZodObject<any>;
   outputSchema: z.ZodSchema;
   run: (args: any, extra: any) => Promise<any>;
 }

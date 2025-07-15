@@ -1,38 +1,23 @@
-import { McpTool } from "@/types";
-import { createMrTool } from "./createMr";
-import { compareVersionTool } from "./compareVersion";
+import { CreateMrTool } from "./createMr.js";
+import { DiffTool } from "./getDiff.js";
+import { ListBranchesTool } from "./listBranches.js";
+import { AcceptMrTool } from "./acceptMr.js";
+import { ListMrsTool } from "./listMrs.js";
+import { ProjectVariablesTool } from "./projectVariables.js";
+import { DeleteBranchTool } from "./deleteBranch.js";
+import { ListMembersTool } from "./listMembers.js";
 
-export class ToolRegistry {
-  private tools: Map<string, McpTool> = new Map();
+export const toolClasses = [
+  CreateMrTool,
+  DiffTool,
+  ListBranchesTool,
+  AcceptMrTool,
+  ListMrsTool,
+  ProjectVariablesTool,
+  DeleteBranchTool,
+  ListMembersTool,
+];
 
-  constructor() {
-    this.registerDefaultTools();
-  }
-
-  private registerDefaultTools() {
-    this.registerTool(createMrTool);
-    this.registerTool(compareVersionTool);
-  }
-
-  registerTool(tool: McpTool) {
-    this.tools.set(tool.name, tool);
-  }
-
-  getTool(name: string): McpTool | undefined {
-    return this.tools.get(name);
-  }
-
-  getAllTools(): McpTool[] {
-    return Array.from(this.tools.values());
-  }
-
-  getToolNames(): string[] {
-    return Array.from(this.tools.keys());
-  }
-
-  hasTool(name: string): boolean {
-    return this.tools.has(name);
-  }
+export function getAllTools() {
+  return toolClasses;
 }
-
-export const toolRegistry = new ToolRegistry();
