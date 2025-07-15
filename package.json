@@ -1,6 +1,6 @@
 {
   "name": "gitlab-mcp-tools",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "GitLab tools based on MCP protocol, supporting diff information retrieval, Merge Request creation, and more",
   "main": "dist/index.js",
   "type": "module",
