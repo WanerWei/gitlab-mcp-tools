@@ -43,7 +43,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@gitbeaker/node": "^35.8.1",
+    "@gitbeaker/rest": "^43.0.0",
     "@modelcontextprotocol/sdk": "^1.15.0",
     "axios": "^1.10.0",
     "zod": "^3.25.75"

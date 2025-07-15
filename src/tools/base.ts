@@ -1,4 +1,4 @@
-import { Gitlab } from '@gitbeaker/node';
+import { Gitlab } from '@gitbeaker/rest';
 import { z } from 'zod';
 import { GitlabConfig, GitlabApiResponse } from '@/types/index.js';
 import { logger } from '@/utils/logger.js';
