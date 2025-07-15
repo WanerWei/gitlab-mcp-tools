@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { mcpServer } from "./mcpServer.js";
 import { logger } from "./utils/logger.js";
 import { getAppConfig, validateConfig } from "./config/index.js";
