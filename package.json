@@ -25,11 +25,12 @@
     "cursor",
     "code-review"
   ],
-  "author": "",
+  "author": "WanerWei",
   "license": "ISC",
+  "homepage": "https://github.com/WanerWei/gitlab-mcp-tools",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/WanerWei/gitlab-mcp-tools.git"
   },
   "engines": {
     "node": ">=16.0.0"
