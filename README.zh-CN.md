@@ -1,5 +1,7 @@
 # GitLab MCP 工具集
 
+[English](README.md) | [中文](README.zh-CN.md)
+
 基于MCP协议的GitLab工具集，支持diff信息获取、Merge Request管理、分支管理、成员管理等，便于在Cursor等平台集成。
 
 ## 🚀 特性

@@ -1,10 +1,10 @@
-# Contributing Guide
+# 贡献指南
 
 [English](CONTRIBUTING.md) | [中文](CONTRIBUTING.zh-CN.md)
 
-Thank you for your interest in the GitLab MCP Tools!
+感谢您对GitLab MCP工具集的关注！
 
-## �� 开发环境设置
+## 🚀 开发环境设置
 
 ```bash
 # 克隆项目
@@ -70,7 +70,7 @@ export const toolClasses = [
 - 更新README中的工具列表
 - 添加使用示例
 
-## �� 提交规范
+## 📋 提交规范
 
 使用约定式提交格式：
 - `feat`: 新功能
@@ -88,7 +88,7 @@ git commit -m "fix: resolve authentication error in createMr tool"
 git commit -m "docs: update README with new tool examples"
 ```
 
-## �� Pull Request流程
+## 🔄 Pull Request流程
 
 1. Fork项目到您的GitHub账户
 2. 创建功能分支：`git checkout -b feature/your-feature`

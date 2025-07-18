@@ -1,5 +1,7 @@
 # GitLab MCP Tools
 
+[English](README.md) | [中文](README.zh-CN.md)
+
 GitLab tools based on MCP protocol, supporting diff information retrieval, Merge Request management, branch management, member management, and more, for easy integration with platforms like Cursor.
 
 ##  Features

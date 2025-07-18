@@ -1,0 +1,19 @@
+# GitHub 多语言支持配置
+# 支持中文和英文文档切换
+
+# 文档语言配置
+languages:
+  - name: "English"
+    code: "en"
+    file: "README.md"
+  - name: "中文"
+    code: "zh-CN"
+    file: "README.zh-CN.md"
+
+# 默认语言
+default_language: "en"
+
+# 支持的语言代码
+supported_languages:
+  - "en"
+  - "zh-CN" 

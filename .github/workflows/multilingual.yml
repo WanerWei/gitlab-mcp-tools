@@ -1,0 +1,79 @@
+name: Multilingual Documentation
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'README*.md'
+      - '.github/workflows/multilingual.yml'
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - 'README*.md'
+      - '.github/workflows/multilingual.yml'
+
+jobs:
+  validate-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate README files
+        run: |
+          echo "检查 README 文件..."
+          if [ ! -f "README.md" ]; then
+            echo "错误: 缺少 README.md 文件"
+            exit 1
+          fi
+          if [ ! -f "README.zh-CN.md" ]; then
+            echo "错误: 缺少 README.zh-CN.md 文件"
+            exit 1
+          fi
+          echo "✅ 所有 README 文件都存在"
+
+      - name: Check file sizes
+        run: |
+          echo "检查文件大小..."
+          en_size=$(wc -c < README.md)
+          zh_size=$(wc -c < README.zh-CN.md)
+          echo "英文文档大小: $en_size 字节"
+          echo "中文文档大小: $zh_size 字节"
+          
+          if [ $en_size -lt 1000 ]; then
+            echo "警告: 英文文档可能过小"
+          fi
+          if [ $zh_size -lt 1000 ]; then
+            echo "警告: 中文文档可能过小"
+          fi
+
+  update-labels:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Add multilingual label
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: labels } = await github.rest.issues.listLabelsForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+            
+            const hasMultilingualLabel = labels.some(label => 
+              label.name === 'multilingual' || 
+              label.name === 'documentation'
+            );
+            
+            if (!hasMultilingualLabel) {
+              await github.rest.issues.createLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: 'multilingual',
+                description: '多语言文档支持',
+                color: '0366d6'
+              });
+            } 
